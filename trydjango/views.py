@@ -5,10 +5,14 @@ To render html web pages
 from django.http import HttpResponse
 import random
 
-name = "Reisuke1231"
-number = random.randint(10, 10000000)
+from articles.models import Article
+
+random_id = random.randint(1, 4)
+
+article_obj = Article.objects.get(id=random_id)
+
 HTML_STRING = f"""
-<h1>Hello {name} - number:{number}</h1>
+<h1>{article_obj.title} - id:{article_obj.id}</h1>
 """
 
 
