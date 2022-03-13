@@ -1,4 +1,4 @@
 .DS_Store
 bin
 lib
-trydjango/__pycache__
+*__pycache__
