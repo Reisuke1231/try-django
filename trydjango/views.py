@@ -3,9 +3,12 @@ To render html web pages
 """
 
 from django.http import HttpResponse
+import random
 
-HTML_STRING = """
-<h1>Hello World</h1>
+name = "Reisuke1231"
+number = random.randint(10, 10000000)
+HTML_STRING = f"""
+<h1>Hello {name} - number:{number}</h1>
 """
 
 
