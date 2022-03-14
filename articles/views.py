@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render
 from .models import Article
@@ -30,6 +31,7 @@ def detail(request, id):
 
     return render(request, 'articles/detail.html', context=context)
 
+@login_required
 def create(request):
     context = {}
     if request.method == 'POST':
