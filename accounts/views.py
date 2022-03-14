@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login as dj_login
+from django.contrib.auth import authenticate, login as dj_login, logout as dj_logout
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -17,6 +17,9 @@ def login(request):
     return render(request, 'accounts/login.html', {})
 
 def logout(request):
+    if request.method == 'POST':
+        dj_logout(request)
+        return redirect('/login/')
     return render(request, 'accounts/logout.html', {})
 
 def register(request):
