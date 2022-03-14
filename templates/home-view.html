@@ -3,4 +3,14 @@
 {% block content %}
 <h1>{{ title }} - id:{{ id }}</h1>
 <p>{{ content }}</p>
+
+<ul>
+    {% for article in article_list %}
+        {% if article.title %}
+            <li><a href='/articles/{{ article.id }}/'>{{ article.title }} - {{ article.content }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+
 {% endblock content %}

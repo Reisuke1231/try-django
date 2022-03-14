@@ -9,8 +9,11 @@ from articles.models import Article
 random_id = random.randint(1, 4)
 
 article_obj = Article.objects.get(id=random_id)
+article_queryset = Article.objects.all()
 
 context = {
+    'article_list': article_queryset,
+    'object': article_obj,
     'title': article_obj.title,
     'id': article_obj.id,
     'content': article_obj.content
