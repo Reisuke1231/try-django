@@ -22,7 +22,7 @@ context = {
 HTML_STRING = render_to_string('home-view.html', context=context)
 
 
-def home_view(request):
+def home_view(request, *args, **kwargs):
     """
     Take in a request (Django sends request)
     Return HTML as a response
