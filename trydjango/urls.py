@@ -23,5 +23,6 @@ urlpatterns = [
     path('', home_view),
     path('articles/', article_views.search),
     path('articles/<int:id>/', article_views.detail),
+    path('articles/create/', article_views.create),
     path('admin/', admin.site.urls),
 ]

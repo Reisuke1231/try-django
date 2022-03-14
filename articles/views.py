@@ -29,3 +29,14 @@ def detail(request, id):
     }
 
     return render(request, 'articles/detail.html', context=context)
+
+def create(request):
+    context = {}
+    if request.method == 'POST':
+        posted = {
+            'title': request.POST.get('title'),
+            'content': request.POST.get('content')
+        }
+        context['article'] = Article.objects.create(**posted)
+
+    return render(request, 'articles/create.html', context=context)
