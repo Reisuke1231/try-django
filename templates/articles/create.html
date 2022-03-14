@@ -4,24 +4,23 @@
 {% block content %}
 
 {% if not article %}
-<div style='margin-top:30px;'>
-    <form action='/articles/create/' method="POST">
-        {% csrf_token %}
-        <div>
-            <input type="text" name="title" placeholder="Enter Title"/>
-        </div>
-        <div style='margin-top:10px;'>
-            <textarea name="content" placeholder="Enter content"></textarea>
-        </div>
-        <div>
-            <input type="submit" value="Create article" />
-        </div>
-    </form>
-</div>
+    <div style='margin-top:30px;'>
+        <form action='/articles/create/' method="POST">
+            {% csrf_token %}
+            <div>
+                <input type="text" name="title" placeholder="Enter Title"/>
+            </div>
+            <div style='margin-top:10px;'>
+                <textarea name="content" placeholder="Enter content"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Create article" />
+            </div>
+        </form>
+    </div>
 {% else %}
-<p>Your article was created successfuly!</p>
-<a href='/articles/{{ article.id }}/'>{{ article.title }} - {{ article.content }}</a>
-
+    <p>Your article was created successfuly!</p>
+    <a href='/articles/{{ article.id }}/'>{{ article.title }} - {{ article.content }}</a>
 {% endif %}
 
 
