@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from .models import Article
 
@@ -6,12 +7,9 @@ def search(request):
     articles = []
 
     try:
-        query = int(query_dict.get('q'))
-
+        query = query_dict.get('q')
         if query:
-            query_set = Article.objects.get(id=query)
-            if query_set:
-                articles.append(query_set)
+            articles = Article.objects.filter(Q(title__contains=query) | Q(content__contains=query))
     except Exception as e:
         print(e)
 

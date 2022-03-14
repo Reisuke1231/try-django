@@ -3,10 +3,12 @@
 
 {% block content %}
 
-    {% if articles %}
-        {% for article in articles %}
-            <h1>{{ article.title }}</h1>
-             <p>{{ article.content }}</p>
-        {% endfor %}
-    {% endif %}
+{% if articles %}
+    {% for article in articles %}
+        <h3>Title: {{ article.title }}</h1>
+        <h4>content: {{ article.content }}</h4>
+        <hr/>
+    {% endfor %}
+{% endif %}
+
 {% endblock content %}
