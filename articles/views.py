@@ -5,6 +5,7 @@ from django.shortcuts import render
 from .forms import ArticleForm
 from .models import Article
 
+
 def search(request):
     query_dict = request.GET
     articles = []
@@ -12,7 +13,8 @@ def search(request):
     try:
         query = query_dict.get('q')
         if query:
-            articles = Article.objects.filter(Q(title__contains=query) | Q(content__contains=query))
+            articles = Article.objects.filter(
+                Q(title__contains=query) | Q(content__contains=query))
     except Exception as e:
         print(e)
 
@@ -21,6 +23,7 @@ def search(request):
     }
 
     return render(request, 'articles/search.html', context=context)
+
 
 def detail(request, id):
     article_obj = None
@@ -33,20 +36,16 @@ def detail(request, id):
 
     return render(request, 'articles/detail.html', context=context)
 
+
 @login_required
 def create(request):
     form = ArticleForm(request.POST or None)
     context = {
         'form': form
     }
-    form = ArticleForm(request.POST)
-    context['form'] = form
     if form.is_valid():
-        posted = {
-            'title': form.cleaned_data.get('title'),
-            'content': form.cleaned_data.get('content')
-        }
-        context['article'] = Article.objects.create(**posted)
+        article_object = form.save()
+        context['form'] = ArticleForm()
 
     return render(request, 'articles/create.html', context=context)
 # def create(request):
@@ -63,5 +62,5 @@ def create(request):
 #                 'content': form.cleaned_data.get('content')
 #             }
 #             context['article'] = Article.objects.create(**posted)
-# 
+#
 #     return render(request, 'articles/create.html', context=context)
